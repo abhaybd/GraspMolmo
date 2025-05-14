@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="GraspMolmo is a generalizable open-vocabulary task-oriented grasping model that predicts semantically appropriate grasps given a natural language instruction.">
+  <meta name="keywords" content="GraspMolmo, Grasping, Task-Oriented Grasping, Molmo, Synthetic Data, VLM, Robotics, Manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GraspMolmo</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">GraspMolmo: Generalizable Task-Oriented Grasping via Large-Scale Synthetic Data Generation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://abhaybd.github.io/">Abhay Deshpande</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/yuquand/">Yuquan Deng</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://arijitray1993.github.io/">Arijit Ray</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jordisalvador-image.blogspot.com/">Jordi Salvador</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.semanticscholar.org/author/Winson-Han/1443358534">Winson Han</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://duanjiafei.com/">Jiafei Duan</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://kuohaozeng.github.io/">Kuo-Hao Zeng</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cs.utexas.edu/~yukez/">Yuke Zhu</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ranjaykrishna.com/">Ranjay Krishna</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://rosehendrix.com/">Rose Hendrix</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>PRIOR @ Allen Institute for AI,</span>
+            <span class="author-block"><sup>2</sup>Boston University,</span>
+            <span class="author-block"><sup>3</sup>University of Washington,</span>
+            <span class="author-block"><sup>4</sup>Vercept,</span>
+            <span class="author-block"><sup>5</sup>UT Austin</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/abhaybd/GraspMolmo"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-fullhd">
+    <div class="hero-body">
+      <div class="teaser-video-container">
+        <div class="teaser-video-row">
+          <video autoplay muted loop>
+            <source src="./static/videos/robot/bottle_lid.mp4" type="video/mp4">
+          </video>
+          <video autoplay muted loop>
+            <source src="./static/videos/robot/frenchpress_pour.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="teaser-video-row">
+          <video autoplay muted loop>
+            <source src="./static/videos/robot/flowers.mp4" type="video/mp4">
+          </video>
+          <video autoplay muted loop>
+            <source src="./static/videos/robot/phone_answer.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present GraspMolmo, a generalizable open-vocabulary task-oriented grasping (TOG) model. GraspMolmo predicts
+            semantically appropriate, stable grasps conditioned on a natural language instruction and a single RGB-D frame.
+            For instance, given "pour me some tea," GraspMolmo selects a grasp on a teapot handle rather than its body.
+          </p>
+          <p>
+            Unlike prior TOG methods, which are limited by small datasets, simplistic language, and uncluttered scenes,
+            GraspMolmo learns from a large-scale synthetic dataset of 379k samples featuring cluttered environments and
+            diverse, realistic task descriptions. We fine-tune the Molmo visual-language model on this data, enabling
+            GraspMolmo to generalize to novel open-vocabulary instructions and objects.
+          </p>
+          <p>
+            In challenging real-world evaluations, GraspMolmo achieves state-of-the-art results, with a 70% prediction
+            success on complex tasks, compared to the 35% achieved by the next best alternative. GraspMolmo also
+            successfully demonstrates the ability to predict semantically correct bimanual grasps zero-shot.
+          </p>
+          <p>
+            We release our synthetic dataset, code, model, and benchmarks to accelerate research in task-semantic robotic
+            manipulation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <img src="./static/images/teaser_transparent.png" alt="Overview of the PRISM dataset and GraspMolmo model">
+    <h2 class="subtitle has-text-centered">
+      GraspMolmo is a generalizable open-vocabulary task-oriented grasping model that predicts semantically appropriate grasps given a natural language instruction.
+    </h2>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Data Generation -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="content">
+          <h2 class="title is-3">PRISM Dataset</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda repudiandae repellat eveniet modi consequatur quisquam laudantium, enim, blanditiis odio quam officia? Dolor, mollitia nesciunt reprehenderit repudiandae laboriosam nobis iste.
+          </p>
+          <img src="./static/images/datagen_overview.png" alt="Overview of the PRISM data generation pipeline">
+        </div>
+      </div>
+    </div>
+    <!--/ Data Generation -->
+
+    <!-- TaskGrasp-Image -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="content">
+          <h2 class="title is-3">TaskGrasp-Image</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda repudiandae repellat eveniet modi consequatur quisquam laudantium, enim, blanditiis odio quam officia? Dolor, mollitia nesciunt reprehenderit repudiandae laboriosam nobis iste.
+          </p>
+          <img src="./static/images/datagen_overview.png" alt="Overview of the PRISM data generation pipeline">
+        </div>
+      </div>
+    </div>
+    <!--/ TaskGrasp-Image -->
+
+    <!-- Real-World Evaluation -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="content">
+          <h2 class="title is-3">Real-World Evaluation</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda repudiandae repellat eveniet modi consequatur quisquam laudantium, enim, blanditiis odio quam officia? Dolor, mollitia nesciunt reprehenderit repudiandae laboriosam nobis iste.
+          </p>
+          <img src="./static/images/datagen_overview.png" alt="Overview of the PRISM data generation pipeline">
+        </div>
+      </div>
+    </div>
+    <!--/ Real-World Evaluation -->
+
+    <!-- Bimanual -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="content">
+          <h2 class="title is-3">Extension to Bimanual Grasping</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda repudiandae repellat eveniet modi consequatur quisquam laudantium, enim, blanditiis odio quam officia? Dolor, mollitia nesciunt reprehenderit repudiandae laboriosam nobis iste.
+          </p>
+          <img src="./static/images/datagen_overview.png" alt="Overview of the PRISM data generation pipeline">
+        </div>
+      </div>
+    </div>
+    <!--/ Bimanual -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{deshpande2025graspmolmo,
+  author    = {Deshpande, Abhay and Deng, Yuquan and Ray, Arijit and Salvador, Jordi and Han, Winson and Duan, Jiafei and Zeng, Kuo-Hao and Zhu, Yuke and Krishna, Ranjay and Hendrix, Rose},
+  title     = {GraspMolmo: Generalizable Task-Oriented Grasping via Large-Scale Synthetic Data Generation},
+  journal   = {arXiv preprint arXiv:XXXXX},
+  year      = {2025},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template taken from <a href="https://nerfies.github.io/">NeRFies</a>, by Keunhong Park.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

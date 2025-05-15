@@ -12,7 +12,6 @@
         rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -21,7 +20,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
   <script src="./static/js/index.js"></script>
   <script src="./static/js/sync_vids.js"></script>
 </head>
@@ -239,7 +237,7 @@
       - Table
       - Regression plot
       Real-world
-      - Pictures of scenes (carousel)
+      - Pictures of scenes
       - Full task table
       Bimanual
       - Videos
@@ -321,18 +319,23 @@
 
     <!-- Real-World Evaluation -->
     <h3 class="title is-3">Real-World Evaluation</h3>
-    <div class="carousel results-carousel">
-      <div class="item item-scene-1">
-        <img src="static/images/scenes/scene1.jpg" alt="Scene 1">
+    <div class="columns is-centered is-multiline">
+      <div class="column is-full">
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <img src="static/images/scenes/scene1.jpg" alt="Scene 1">
+            <p class="has-text-centered">Scene 1</p>
+          </div>
+          <div class="column is-4">
+            <img src="static/images/scenes/scene2.jpg" alt="Scene 2">
+            <p class="has-text-centered">Scene 2</p>
+          </div>
+          <div class="column is-4">
+            <img src="static/images/scenes/scene3.jpg" alt="Scene 3">
+            <p class="has-text-centered">Scene 3</p>
+          </div>
+        </div>
       </div>
-      <div class="item item-scene-2">
-        <img src="static/images/scenes/scene2.jpg" alt="Scene 2">
-      </div>
-      <div class="item item-scene-3">
-        <img src="static/images/scenes/scene3.jpg" alt="Scene 3">
-      </div>
-    </div>
-    <div class="columns is-centered">
       <div class="column is-9">
         <div class="content">
           <div class="table-container has-text-centered">

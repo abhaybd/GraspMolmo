@@ -23,6 +23,7 @@
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="./static/js/sync_vids.js"></script>
 </head>
 <body>
 
@@ -125,18 +126,18 @@
     <div class="hero-body">
       <div class="teaser-video-container">
         <div class="teaser-video-row">
-          <video autoplay muted loop>
+          <video muted class="synced synced-teaser">
             <source src="./static/videos/robot/bottle_lid.mp4" type="video/mp4">
           </video>
-          <video autoplay muted loop>
+          <video muted class="synced synced-teaser">
             <source src="./static/videos/robot/frenchpress_pour.mp4" type="video/mp4">
           </video>
         </div>
         <div class="teaser-video-row">
-          <video autoplay muted loop>
+          <video muted class="synced synced-teaser">
             <source src="./static/videos/robot/flowers.mp4" type="video/mp4">
           </video>
-          <video autoplay muted loop>
+          <video muted class="synced synced-teaser">
             <source src="./static/videos/robot/phone_answer.mp4" type="video/mp4">
           </video>
         </div>
@@ -322,13 +323,13 @@
     <h3 class="title is-3">Real-World Evaluation</h3>
     <div class="carousel results-carousel">
       <div class="item item-scene-1">
-        <img src="static/images/teaser_transparent.png" alt="Scene 1">
+        <img src="static/images/scenes/scene1.jpg" alt="Scene 1">
       </div>
       <div class="item item-scene-2">
-        <img src="static/images/teaser_transparent.png" alt="Scene 2">
+        <img src="static/images/scenes/scene2.jpg" alt="Scene 2">
       </div>
       <div class="item item-scene-3">
-        <img src="static/images/teaser_transparent.png" alt="Scene 3">
+        <img src="static/images/scenes/scene3.jpg" alt="Scene 3">
       </div>
     </div>
     <div class="columns is-centered">
@@ -418,12 +419,12 @@
           <h3 class="title is-3">Extension to Bimanual Grasping</h2>
           <div class="columns is-multiline is-centered">
             <div class="column is-6">
-              <video autoplay muted loop>
+              <video muted class="synced synced-bimanual">
                 <source src="./static/videos/robot/bottle.mp4" type="video/mp4">
               </video>
             </div>
             <div class="column is-6">
-              <video autoplay muted loop>
+              <video muted class="synced synced-bimanual">
                 <source src="./static/videos/robot/box.mp4" type="video/mp4">
               </video>
             </div>

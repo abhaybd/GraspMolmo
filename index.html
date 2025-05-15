@@ -46,7 +46,7 @@
               <a href="https://www.semanticscholar.org/author/Winson-Han/1443358534">Winson Han</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://duanjiafei.com/">Jiafei Duan</a><sup>3</sup>,
+              <a href="https://duanjiafei.com/">Jiafei Duan</a><sup>1,3</sup>,
             </span>
             <span class="author-block">
               <a href="https://kuohaozeng.github.io/">Kuo-Hao Zeng</a><sup>4</sup>,
@@ -55,7 +55,7 @@
               <a href="https://www.cs.utexas.edu/~yukez/">Yuke Zhu</a><sup>5</sup>,
             </span>
             <span class="author-block">
-              <a href="https://ranjaykrishna.com/">Ranjay Krishna</a><sup>1</sup>,
+              <a href="https://ranjaykrishna.com/">Ranjay Krishna</a><sup>1,3</sup>,
             </span>
             <span class="author-block">
               <a href="https://rosehendrix.com/">Rose Hendrix</a><sup>1</sup>
@@ -154,13 +154,14 @@
         <h2 class="title is-2">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present GraspMolmo, a generalizable open-vocabulary task-oriented grasping (TOG) model. GraspMolmo predicts
+            We present GraspMolmo, a generalizable open-vocabulary task-oriented grasping (TOG) model, and PRISM,
+            a large-scale synthetic dataset used to train it. GraspMolmo predicts
             semantically appropriate, stable grasps conditioned on a natural language instruction and a single RGB-D frame.
-            For instance, given "pour me some tea," GraspMolmo selects a grasp on a teapot handle rather than its body.
+            For instance, given "pour me some tea", GraspMolmo selects a grasp on a teapot handle rather than its body or lid.
           </p>
           <p>
             Unlike prior TOG methods, which are limited by small datasets, simplistic language, and uncluttered scenes,
-            GraspMolmo learns from a large-scale synthetic dataset of 379k samples featuring cluttered environments and
+            GraspMolmo learns from PRISM, a novel large-scale synthetic dataset of 379k samples featuring cluttered environments and
             diverse, realistic task descriptions. We fine-tune the Molmo visual-language model on this data, enabling
             GraspMolmo to generalize to novel open-vocabulary instructions and objects.
           </p>
@@ -205,7 +206,8 @@
           <div class="columns is-multiline is-centered">
             <div class="column is-full">
               <p>
-                PRISM is a large-scale synthetic dataset for Task-Oriented Grasping featuring cluttered environments and diverse, realistic task descriptions.
+                <b>P</b>urpose-driven <b>R</b>obotic <b>I</b>nteraction in <b>S</b>cene <b>M</b>anipulation (PRISM) is a large-scale synthetic dataset for Task-Oriented Grasping
+                featuring cluttered environments and diverse, realistic task descriptions.
                 We use 2365 object instances from ShapeNet-Sem along with stable grasps from ACRONYM to compose 10,000 unique and diverse scenes.
                 Within each scene we capture 10 views, within which there are multiple tasks to be performed.
                 This results in 379k task-grasp samples in total.
@@ -228,9 +230,10 @@
           <div class="columns is-multiline is-centered">
             <div class="column is-full">
               <p>
-                TaskGrasp is a standard benchmark for Task-Oriented Grasping, with manually annotated grasp annotations.
+                <a href="https://github.com/adithyamurali/TaskGrasp">TaskGrasp</a>
+                is a standard benchmark for Task-Oriented Grasping, with manually annotated grasp annotations.
                 However, TaskGrasp only contains segmented partial object point clouds, which (a) fails to capture the complexity of real-world scenes,
-                and (b) includes fusion and segmentation artifacts which lead to messy data. The use of point clouds also makes it difficult to leverage
+                and (b) includes fusion and segmentation artifacts. The use of point clouds also makes it difficult to leverage
                 models that use RGB input, such as VLMs.
               </p>
               <p>
@@ -289,8 +292,8 @@
                   and its ability to handle complexity in scene composition, object diversity, and task specification.
                 </p>
                 <p>
-                  We also note that performance on PRISM-Test correlates well with real-world performance, while TaskGrasp-Image does not.
-                  This further demonstrates the importance and utility of the PRISM-Test benchmark.
+                  We also note that performance on PRISM-Test correlates well with real-world performance,
+                  further demonstrating its importance and utility.
                 </p>
               </div>
               <div class="column is-6">
@@ -460,10 +463,11 @@
                 <source src="./static/videos/robot/box.mp4" type="video/mp4">
               </video>
             </div>
-            <div class="column is-8">
+            <div class="column is-10">
               <p class="has-text-centered">
-                We also see that GraspMolmo shows impressive capability to predict bimanual grasps, enabling
-                complex task-oriented bimanual grasping.
+                We also see that by performing multiple predictions, GraspMolmo can predict multiple grasps, enabling
+                complex task-oriented bimanual grasping. To do so, we decompose a bimanual task into two single-arm tasks,
+                and use GraspMolmo to predict the grasps for each arm sequentially. For example, "Open the water bottle" becomes "Lift the water bottle" and "Unscrew the lid".
               </p>
             </div>
           </div>

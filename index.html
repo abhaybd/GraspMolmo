@@ -202,10 +202,19 @@
       <div class="column is-full">
         <div class="content">
           <h3 class="title is-3">PRISM Dataset</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda repudiandae repellat eveniet modi consequatur quisquam laudantium, enim, blanditiis odio quam officia? Dolor, mollitia nesciunt reprehenderit repudiandae laboriosam nobis iste.
-          </p>
-          <img src="./static/images/datagen_overview.png" alt="Overview of the PRISM data generation pipeline">
+          <div class="columns is-multiline is-centered">
+            <div class="column is-full">
+              <p>
+                PRISM is a large-scale synthetic dataset for Task-Oriented Grasping featuring cluttered environments and diverse, realistic task descriptions.
+                We use 2365 object instances from ShapeNet-Sem along with stable grasps from ACRONYM to compose 10,000 unique and diverse scenes.
+                Within each scene we capture 10 views, within which there are multiple tasks to be performed.
+                This results in 379k task-grasp samples in total.
+              </p>
+            </div>
+            <div class="column is-full">
+              <img src="./static/images/datagen_overview.png" alt="Overview of the PRISM data generation pipeline">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -215,11 +224,31 @@
     <div class="columns is-centered">
       <div class="column is-full">
         <div class="content">
-          <h3 class="title is-3">TaskGrasp-Image</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda repudiandae repellat eveniet modi consequatur quisquam laudantium, enim, blanditiis odio quam officia? Dolor, mollitia nesciunt reprehenderit repudiandae laboriosam nobis iste.
-          </p>
-          <img src="./static/images/datagen_overview.png" alt="Overview of the PRISM data generation pipeline">
+          <h3 class="title is-3">TaskGrasp-Image</h3>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-full">
+              <p>
+                TaskGrasp is a standard benchmark for Task-Oriented Grasping, with manually annotated grasp annotations.
+                However, TaskGrasp only contains segmented partial object point clouds, which (a) fails to capture the complexity of real-world scenes,
+                and (b) includes fusion and segmentation artifacts which lead to messy data. The use of point clouds also makes it difficult to leverage
+                models that use RGB input, such as VLMs.
+              </p>
+              <p>
+                To address these issues, we derive TaskGrasp-Image from TaskGrasp. TaskGrasp-Image consists of the same ground-truth annotations as TaskGrasp,
+                but the grasp annotations have been transformed into the image frame, allowing models to use RGB input. We perform this transformation by
+                using point-cloud registration techniques to align the point clouds with the segmented object points from each RGB-D frame.
+                Since the image frames are, by construction, ground truth real data, TaskGrasp-Image does not suffer from fusion or segmentation artifacts.
+                As a result, TaskGrasp-Image is a realistic and representative benchmark for Task-Oriented Grasping.
+              </p>
+            </div>
+            <div class="column is-8">
+              <img src="./static/images/taskgrasp_image_registration.png" alt="A visualization of the segmented pointcloud (red) of a pot registered to one of the input RGB-D views.">
+              <p class="has-text-centered">
+                A visualization of the segmented pointcloud (red) of a pot registered to one of the input RGB-D views.
+                By performing this registration, we can transform the annotated grasps (yellow) into the camera frame.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -246,7 +275,7 @@
     <div class="columns is-centered">
       <div class="column is-full">
         <div class="content">
-          <h3 class="title is-3">Experimental Results</h2>
+          <h3 class="title is-3">Experimental Results</h3>
             <div class="columns is-multiline is-centered">
               <div class="column is-full">
                 <p>
@@ -419,7 +448,7 @@
     <div class="columns is-centered">
       <div class="column is-full">
         <div class="content">
-          <h3 class="title is-3">Extension to Bimanual Grasping</h2>
+          <h3 class="title is-3">Extension to Bimanual Grasping</h3>
           <div class="columns is-multiline is-centered">
             <div class="column is-6">
               <video muted class="synced synced-bimanual">

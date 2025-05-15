@@ -128,6 +128,7 @@ body {
 
 .results-carousel {
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .results-carousel .item {
@@ -137,10 +138,6 @@ body {
   border-radius: 10px;
   padding: 0;
   font-size: 0;
-}
-
-.results-carousel video {
-  margin: 0;
 }
 
 
@@ -170,4 +167,55 @@ body {
 }
 #interpolation-image-wrapper img {
   border-radius: 5px;
+}
+
+.results-table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.results-table tr td, th {
+  border: none;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.results-table tr:nth-child(1) th {
+  border-top: solid black 2px;
+  border-bottom: solid black 1px;
+}
+
+.results-table tr:nth-last-child(1) td {
+  border-bottom: solid black 2px !important;
+  background-color: lightgray;
+}
+
+.results-expert-row {
+  border-top: solid black 1px;
+  border-bottom: solid black 1px;
+}
+
+.results-table sup {
+  line-height: 0;
+}
+
+.scenes-table tr td {
+  border-color: black;
+  vertical-align: middle;
+}
+
+.scenes-table tr:nth-child(6n) {
+  border-bottom: solid black 2px;
+}
+
+.scenes-table tr:nth-child(6n+1) {
+  border-top: solid black 2px;
+}
+
+.container h3 {
+  margin-top: 1em;
+}
+
+.container h3:first {
+  margin-top: 0;
 }

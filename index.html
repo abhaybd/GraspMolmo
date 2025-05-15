@@ -12,8 +12,7 @@
         rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -22,8 +21,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
 <body>
@@ -147,12 +145,14 @@
   </div>
 </section>
 
+<hr>
+
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-2">Abstract</h2>
         <div class="content has-text-justified">
           <p>
             We present GraspMolmo, a generalizable open-vocabulary task-oriented grasping (TOG) model. GraspMolmo predicts
@@ -181,6 +181,8 @@
   </div>
 </section>
 
+<hr>
+
 <section class="section">
   <div class="container is-max-desktop">
     <img src="./static/images/teaser_transparent.png" alt="Overview of the PRISM dataset and GraspMolmo model">
@@ -190,14 +192,17 @@
   </div>
 </section>
 
+<hr>
+
 <section class="section">
   <div class="container is-max-desktop">
+    <h2 class="title is-2 has-text-centered">Data Generation</h2>
 
     <!-- Data Generation -->
     <div class="columns is-centered">
       <div class="column is-full-width">
         <div class="content">
-          <h2 class="title is-3">PRISM Dataset</h2>
+          <h3 class="title is-3">PRISM Dataset</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda repudiandae repellat eveniet modi consequatur quisquam laudantium, enim, blanditiis odio quam officia? Dolor, mollitia nesciunt reprehenderit repudiandae laboriosam nobis iste.
           </p>
@@ -211,7 +216,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <div class="content">
-          <h2 class="title is-3">TaskGrasp-Image</h2>
+          <h3 class="title is-3">TaskGrasp-Image</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda repudiandae repellat eveniet modi consequatur quisquam laudantium, enim, blanditiis odio quam officia? Dolor, mollitia nesciunt reprehenderit repudiandae laboriosam nobis iste.
           </p>
@@ -220,30 +225,215 @@
       </div>
     </div>
     <!--/ TaskGrasp-Image -->
+  </div>
+</section>
 
-    <!-- Real-World Evaluation -->
+<hr>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-2 has-text-centered">Evaluation</h2>
+    <!-- 
+      Experimental Results
+      - Table
+      - Regression plot
+      Real-world
+      - Pictures of scenes (carousel)
+      - Full task table
+      Bimanual
+      - Videos
+    -->
+    <!-- Experimental Results -->
     <div class="columns is-centered">
       <div class="column is-full-width">
         <div class="content">
-          <h2 class="title is-3">Real-World Evaluation</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda repudiandae repellat eveniet modi consequatur quisquam laudantium, enim, blanditiis odio quam officia? Dolor, mollitia nesciunt reprehenderit repudiandae laboriosam nobis iste.
-          </p>
-          <img src="./static/images/datagen_overview.png" alt="Overview of the PRISM data generation pipeline">
+          <h3 class="title is-3">Experimental Results</h2>
+            <div class="columns is-multiline is-centered">
+              <div class="column is-full">
+                <p>
+                  We evaluate GraspMolmo and the most appropriate baseline on three distinct benchmark settings, progressively increasing in complexity and real-world applicability: 
+                  a benchmark from literature with simple objects and minimal visual diversity, a synthetic held-out dataset of fully composed scenes with unseen objects, and finally, 
+                  real-world transfer scenarios. The performance gap between methods widens notably as we progress from simpler to more complex evaluation scenarios, revealing
+                  fundamental differences in approach capabilities that are not apparent in basic benchmarks.
+                </p>
+                <p>
+                  We see that GraspMolmo outperforms all baselines in all evaluations, especially in real-world transfer experiments. This demonstrates its powerful generalization capabilities,
+                  and its ability to handle complexity in scene composition, object diversity, and task specification.
+                </p>
+                <p>
+                  We also note that performance on PRISM-Test correlates well with real-world performance, while TaskGrasp-Image does not.
+                  This further demonstrates the importance and utility of the PRISM-Test benchmark.
+                </p>
+              </div>
+              <div class="column is-6">
+                <img src="static/images/correlations.png" alt="PRISM-Test is a better predictor of real-world performance than TaskGrasp-Image.">
+                <p class="has-text-centered">
+                  PRISM-Test is a better predictor of real-world performance than TaskGrasp-Image.
+                </p>
+              </div>
+              <div class="column is-full">
+                <div class="table-container has-text-centered">
+                <table class="results-table">
+                  <tr>
+                    <th></th>
+                    <th>TaskGrasp-Image</th>
+                    <th>PRISM-Test</th>
+                    <th>PRISM-Real (Prediction)</th>
+                    <th>PRISM-Real (Overall)</th>
+                  </tr>
+                  <tr>
+                    <td>Random</td>
+                    <td>54.5%</td>
+                    <td>29.3%</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td>GraspGPT</td>
+                    <td>72.3%</td>
+                    <td>40.0%</td>
+                    <td>35.1%</td>
+                    <td>24.0%</td>
+                  </tr>
+                  <tr>
+                    <td>Molmo</td>
+                    <td>75.6%</td>
+                    <td>49.8%</td>
+                    <td>33.7%</td>
+                    <td>31.0%</td>
+                  </tr>
+                  <tr>
+                    <td><b>GraspMolmo</b></td>
+                    <td><b>76.7%</b></td>
+                    <td><b>62.5%</b></td>
+                    <td><b>70.4%</b></td>
+                    <td><b>61.1%</b></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!--/ Real-World Evaluation -->
+    <!--/ Experimental Results -->
+
+    <!-- Real-World Evaluation -->
+    <h3 class="title is-3">Real-World Evaluation</h3>
+    <div class="carousel results-carousel">
+      <div class="item item-scene-1">
+        <img src="static/images/teaser_transparent.png" alt="Scene 1">
+      </div>
+      <div class="item item-scene-2">
+        <img src="static/images/teaser_transparent.png" alt="Scene 2">
+      </div>
+      <div class="item item-scene-3">
+        <img src="static/images/teaser_transparent.png" alt="Scene 3">
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-9">
+        <div class="content">
+          <div class="table-container has-text-centered">
+            <table class="scenes-table">
+              <tr>
+                <td rowspan="6">Scene 1</td>
+                <td rowspan="2">French Press</td>
+                <td>"Pour coffee from the french press"</td>
+              </tr>
+              <tr>
+                <td>"Press down the knob of the plunger of the french press"</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Kitchen Knife</td>
+                <td>"Use the knife to cut fruit"</td>
+              </tr>
+              <tr>
+                <td>"Hand me the knife safely"</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Mug</td>
+                <td>"Pour the water out of the blue mug"</td>
+              </tr>
+              <tr>
+                <td>"Hang the blue mug onto a hook by the handle"</td>
+              </tr>
+              <tr>
+                <td rowspan="6">Scene 2</td>
+                <td rowspan="2">Water Bottle</td>
+                <td>"Open the lid of the water bottle"</td>
+              </tr>
+              <tr>
+                <td>"Give me some water"</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Sink</td>
+                <td>"Adjust the faucet"</td>
+              </tr>
+              <tr>
+                <td>"Turn on the sink"</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Spray Bottle</td>
+                <td>"Spray cleaning solution with the spray bottle"</td>
+              </tr>
+              <tr>
+                <td>"Unscrew the spray bottle"</td>
+              </tr>
+              <tr>
+                <td rowspan="6">Scene 3</td>
+                <td rowspan="2">Books</td>
+                <td>"Pass the book written by Greg Bear"</td>
+              </tr>
+              <tr>
+                <td>"Pass the book written by Orson Scott Card"</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Telephone</td>
+                <td>"Answer the phone"</td>
+              </tr>
+              <tr>
+                <td>"Put the phone back on the hook"</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Flower + Vase</td>
+                <td>"Take the flowers out of the vase"</td>
+              </tr>
+              <tr>
+                <td>"Dump the flowers out of the vase"</td>
+              </tr>
+            </table>            
+          </div>
+          <p class="has-text-centered">
+            A full list of the scenes, objects, and tasks used for real-world evaluation.
+          </p>
+        </div>
+      </div>
+    </div>
 
     <!-- Bimanual -->
     <div class="columns is-centered">
       <div class="column is-full-width">
         <div class="content">
-          <h2 class="title is-3">Extension to Bimanual Grasping</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda repudiandae repellat eveniet modi consequatur quisquam laudantium, enim, blanditiis odio quam officia? Dolor, mollitia nesciunt reprehenderit repudiandae laboriosam nobis iste.
-          </p>
-          <img src="./static/images/datagen_overview.png" alt="Overview of the PRISM data generation pipeline">
+          <h3 class="title is-3">Extension to Bimanual Grasping</h2>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-6">
+              <video autoplay muted loop>
+                <source src="./static/videos/robot/bottle.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column is-6">
+              <video autoplay muted loop>
+                <source src="./static/videos/robot/box.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column is-8">
+              <p class="has-text-centered">
+                We also see that GraspMolmo shows impressive capability to predict bimanual grasps, enabling
+                complex task-oriented bimanual grasping.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

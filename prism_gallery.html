@@ -22,6 +22,9 @@
       overflow: hidden;
       color: #fff;
     }
+    .hidden {
+        display: none !important;
+    }
     .gallery-root {
       position: relative;
       height: 100vh;
@@ -121,16 +124,9 @@
   <div id="gallery" class="gallery-root">
     <div class="top-controls">
       <button id="fsToggle" class="control-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">
-        <i class="fas fa-expand"></i>
+        <i id="fsToggleIcon" class="fas fa-expand"></i>
       </button>
     </div>
-
-    <button class="nav-btn nav-prev" id="prevBtn" aria-label="Previous image">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-    <button class="nav-btn nav-next" id="nextBtn" aria-label="Next image">
-      <i class="fas fa-chevron-right"></i>
-    </button>
 
     <div class="carousel" id="carousel" tabindex="0" aria-label="PRISM photo gallery">
       <div class="slide" data-name="Scene 1">
@@ -184,8 +180,6 @@
     (function() {
       const carousel = document.getElementById('carousel');
       const originalSlides = Array.from(carousel.querySelectorAll('.slide'));
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
       const fsToggle = document.getElementById('fsToggle');
       const gallery = document.getElementById('gallery');
 
@@ -279,10 +273,6 @@
         }, 100);
       });
 
-      // Buttons
-      prevBtn.addEventListener('click', () => { prev(); pauseAndMaybeResume(); });
-      nextBtn.addEventListener('click', () => { next(); pauseAndMaybeResume(); });
-
       // Keyboard navigation
       window.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') { prev(); pauseAndMaybeResume(); }
@@ -291,8 +281,6 @@
       });
 
       // Hover/touch pause
-    //   carousel.addEventListener('mouseenter', stopAuto);
-    //   carousel.addEventListener('mouseleave', startAuto);
       carousel.addEventListener('pointerdown', pauseAndMaybeResume);
 
       // Fullscreen toggle
@@ -301,11 +289,13 @@
       }
 
       function updateFsIcon() {
-        const icon = fsToggle.querySelector('i');
+        const icon = document.getElementById('fsToggleIcon');
         if (isFullscreen()) {
+          fsToggle.classList.add('hidden');
           icon.classList.remove('fa-expand');
           icon.classList.add('fa-compress');
         } else {
+          fsToggle.classList.remove('hidden');
           icon.classList.remove('fa-compress');
           icon.classList.add('fa-expand');
         }
@@ -323,7 +313,6 @@
 
       fsToggle.addEventListener('click', toggleFullscreen);
       document.addEventListener('fullscreenchange', updateFsIcon);
-      document.addEventListener('webkitfullscreenchange', updateFsIcon);
 
       // Initialize
       updateFsIcon();

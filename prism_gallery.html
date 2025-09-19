@@ -153,6 +153,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="./static/js/nosleep.min.js"></script>
 
   <script>
     (function() {
@@ -160,6 +161,7 @@
       const originalSlides = Array.from(carousel.querySelectorAll('.slide'));
       const fsToggle = document.getElementById('fsToggle');
       const gallery = document.getElementById('gallery');
+      const noSleep = new NoSleep();
 
       const AUTO_INTERVAL_MS = 3000; // change slide every 3 seconds
       const IDLE_RESUME_MS = 5000;   // resume auto after 5s idle
@@ -279,6 +281,15 @@
         }
       }
 
+      function fullScreenChange() {
+        updateFsIcon();
+        if (isFullscreen()) {
+          noSleep.enable();
+        } else {
+          noSleep.disable();
+        }
+      }
+
       function toggleFullscreen() {
         if (!isFullscreen()) {
           const req = gallery.requestFullscreen || gallery.webkitRequestFullscreen || gallery.msRequestFullscreen;
@@ -290,7 +301,7 @@
       }
 
       fsToggle.addEventListener('click', toggleFullscreen);
-      document.addEventListener('fullscreenchange', updateFsIcon);
+      document.addEventListener('fullscreenchange', fullScreenChange);
 
       // Initialize
       updateFsIcon();

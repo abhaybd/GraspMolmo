@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRISM Photo Gallery</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.png">
+
+  <style>
+    html, body {
+      height: 100%;
+      background: #000;
+    }
+    body {
+      margin: 0;
+      overflow: hidden;
+      color: #fff;
+    }
+    .gallery-root {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      background: #000;
+    }
+    .carousel {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    .slide {
+      position: relative;
+      min-width: 100%;
+      height: 100%;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.45);
+      color: #fff;
+      border: none;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .nav-btn:hover { background: rgba(0, 0, 0, 0.65); }
+    .nav-prev { left: 1rem; }
+    .nav-next { right: 1rem; }
+
+    .top-controls {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 20;
+    }
+    .control-btn {
+      background: rgba(0, 0, 0, 0.45);
+      color: #fff;
+      border: none;
+      height: 2.5rem;
+      width: 2.5rem;
+      border-radius: 0.5rem;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+    .control-btn:hover { background: rgba(0, 0, 0, 0.65); }
+
+    .caption {
+      position: absolute;
+      bottom: 0.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.45);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.9rem;
+      z-index: 15;
+    }
+
+    /* Hide scrollbars */
+    .carousel::-webkit-scrollbar { display: none; }
+    .carousel { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Fullscreen adjustments */
+    :fullscreen .gallery-root, .gallery-root:fullscreen { height: 100vh; width: 100vw; }
+  </style>
+</head>
+<body>
+  <div id="gallery" class="gallery-root">
+    <div class="top-controls">
+      <button id="fsToggle" class="control-btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">
+        <i class="fas fa-expand"></i>
+      </button>
+    </div>
+
+    <button class="nav-btn nav-prev" id="prevBtn" aria-label="Previous image">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="nav-btn nav-next" id="nextBtn" aria-label="Next image">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <div class="carousel" id="carousel" tabindex="0" aria-label="PRISM photo gallery">
+      <div class="slide" data-name="Scene 1">
+        <img src="./static/images/prism_gallery/scene_0.png" alt="PRISM gallery image 1">
+        <div class="caption">Scene 1</div>
+      </div>
+      <div class="slide" data-name="Scene 2">
+        <img src="./static/images/prism_gallery/scene_1.png" alt="PRISM gallery image 2">
+        <div class="caption">Scene 2</div>
+      </div>
+      <div class="slide" data-name="Scene 3">
+        <img src="./static/images/prism_gallery/scene_2.png" alt="PRISM gallery image 3">
+        <div class="caption">Scene 3</div>
+      </div>
+      <div class="slide" data-name="Scene 4">
+        <img src="./static/images/prism_gallery/scene_3.png" alt="PRISM gallery image 4">
+        <div class="caption">Scene 4</div>
+      </div>
+      <div class="slide" data-name="Scene 5">
+        <img src="./static/images/prism_gallery/scene_4.png" alt="PRISM gallery image 5">
+        <div class="caption">Scene 5</div>
+      </div>
+      <div class="slide" data-name="Scene 6">
+        <img src="./static/images/prism_gallery/scene_5.png" alt="PRISM gallery image 6">
+        <div class="caption">Scene 6</div>
+      </div>
+      <div class="slide" data-name="Scene 7">
+        <img src="./static/images/prism_gallery/scene_6.png" alt="PRISM gallery image 7">
+        <div class="caption">Scene 7</div>
+      </div>
+      <div class="slide" data-name="Scene 8">
+        <img src="./static/images/prism_gallery/scene_7.png" alt="PRISM gallery image 8">
+        <div class="caption">Scene 8</div>
+      </div>
+      <div class="slide" data-name="Scene 9">
+        <img src="./static/images/prism_gallery/scene_8.png" alt="PRISM gallery image 9">
+        <div class="caption">Scene 9</div>
+      </div>
+      <div class="slide" data-name="Scene 10">
+        <img src="./static/images/prism_gallery/scene_9.png" alt="PRISM gallery image 10">
+        <div class="caption">Scene 10</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script>
+    (function() {
+      const carousel = document.getElementById('carousel');
+      const originalSlides = Array.from(carousel.querySelectorAll('.slide'));
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const fsToggle = document.getElementById('fsToggle');
+      const gallery = document.getElementById('gallery');
+
+      const AUTO_INTERVAL_MS = 3000; // change slide every 3 seconds
+      const IDLE_RESUME_MS = 5000;   // resume auto after 5s idle
+
+      // Build an infinite tape: [clone-left][original][clone-right]
+      const originalCount = originalSlides.length;
+      // Append right clones in-order
+      for (let i = 0; i < originalCount; i++) {
+        carousel.appendChild(originalSlides[i].cloneNode(true));
+      }
+      // Prepend left clones in reverse-order to preserve visual order
+      for (let i = originalCount - 1; i >= 0; i--) {
+        const first = carousel.firstChild;
+        carousel.insertBefore(originalSlides[i].cloneNode(true), first);
+      }
+
+      const slides = Array.from(carousel.querySelectorAll('.slide'));
+
+      // Current index on the tape (not normalized)
+      let currentIndexTape = originalCount; // start at first slide of middle set
+      let autoTimer = null;
+      let resumeTimer = null;
+      let ignoreScrollUntil = 0; // timestamp (ms) until which scrolls are considered programmatic
+
+      function setScrollPosition(indexOnTape, behavior) {
+        const width = carousel.clientWidth;
+        const left = indexOnTape * Math.max(1, width);
+        if (behavior === 'smooth') {
+          ignoreScrollUntil = performance.now() + 1600; // ignore scroll events during smooth animation
+          carousel.style.scrollBehavior = 'smooth';
+          carousel.scrollTo({ left, behavior: 'smooth' });
+        } else {
+          // Jump without animation
+          ignoreScrollUntil = performance.now() + 150; // brief ignore for jump
+          carousel.style.scrollBehavior = 'auto';
+          carousel.scrollTo({ left, behavior: 'auto' });
+        }
+      }
+
+      function rebaseIntoMiddleIfNeeded() {
+        // Keep the visual content the same but relocate index into middle block
+        if (currentIndexTape < originalCount || currentIndexTape >= 2 * originalCount) {
+          // Map to equivalent index inside [originalCount, 2*originalCount)
+          const normalized = ((currentIndexTape % originalCount) + originalCount) % originalCount;
+          currentIndexTape = originalCount + normalized;
+          setScrollPosition(currentIndexTape, 'auto');
+        }
+      }
+
+      function next() {
+        currentIndexTape += 1;
+        console.log("next", currentIndexTape, (new Date()).getTime() / 1000);
+        setScrollPosition(currentIndexTape, 'smooth');
+      }
+      function prev() {
+        currentIndexTape -= 1;
+        setScrollPosition(currentIndexTape, 'smooth');
+      }
+
+      function startAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(next, AUTO_INTERVAL_MS);
+      }
+
+      function stopAuto() {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+
+      function pauseAndMaybeResume() {
+        stopAuto();
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(startAuto, IDLE_RESUME_MS);
+      }
+
+      // Update index on manual scroll
+      let scrollDebounce;
+      carousel.addEventListener('scroll', () => {
+        if (performance.now() >= ignoreScrollUntil) {
+          pauseAndMaybeResume();
+        }
+        clearTimeout(scrollDebounce);
+        scrollDebounce = setTimeout(() => {
+          const scrollLeft = carousel.scrollLeft;
+          const width = carousel.clientWidth;
+          const idx = Math.round(scrollLeft / Math.max(1, width));
+          currentIndexTape = idx;
+          rebaseIntoMiddleIfNeeded();
+        }, 100);
+      });
+
+      // Buttons
+      prevBtn.addEventListener('click', () => { prev(); pauseAndMaybeResume(); });
+      nextBtn.addEventListener('click', () => { next(); pauseAndMaybeResume(); });
+
+      // Keyboard navigation
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { prev(); pauseAndMaybeResume(); }
+        if (e.key === 'ArrowRight') { next(); pauseAndMaybeResume(); }
+        if (e.key.toLowerCase() === 'f') { toggleFullscreen(); }
+      });
+
+      // Hover/touch pause
+    //   carousel.addEventListener('mouseenter', stopAuto);
+    //   carousel.addEventListener('mouseleave', startAuto);
+      carousel.addEventListener('pointerdown', pauseAndMaybeResume);
+
+      // Fullscreen toggle
+      function isFullscreen() {
+        return document.fullscreenElement === gallery || document.webkitFullscreenElement === gallery;
+      }
+
+      function updateFsIcon() {
+        const icon = fsToggle.querySelector('i');
+        if (isFullscreen()) {
+          icon.classList.remove('fa-expand');
+          icon.classList.add('fa-compress');
+        } else {
+          icon.classList.remove('fa-compress');
+          icon.classList.add('fa-expand');
+        }
+      }
+
+      function toggleFullscreen() {
+        if (!isFullscreen()) {
+          const req = gallery.requestFullscreen || gallery.webkitRequestFullscreen || gallery.msRequestFullscreen;
+          if (req) req.call(gallery);
+        } else {
+          const exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+          if (exit) exit.call(document);
+        }
+      }
+
+      fsToggle.addEventListener('click', toggleFullscreen);
+      document.addEventListener('fullscreenchange', updateFsIcon);
+      document.addEventListener('webkitfullscreenchange', updateFsIcon);
+
+      // Initialize
+      updateFsIcon();
+      // Jump to the first slide of the middle set to enable seamless rightward scrolling
+      setScrollPosition(currentIndexTape, 'auto');
+      startAuto();
+
+      // Keep alignment on resize
+      window.addEventListener('resize', () => {
+        setScrollPosition(currentIndexTape, 'auto');
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
